@@ -1,11 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MaiaIO.TDD.CLI
 {
@@ -24,7 +18,7 @@ namespace MaiaIO.TDD.CLI
         [DefaultValue(false)]
         public bool? IsActive { get; set; }
 
-        public  ExpedicaoListarRequest()
+        public ExpedicaoListarRequest()
         {
 
         }
@@ -36,7 +30,7 @@ namespace MaiaIO.TDD.CLI
             IsActive = isActive;
         }
 
-       
+
 
 
     }
@@ -46,6 +40,10 @@ namespace MaiaIO.TDD.CLI
         public long Id { get; set; }
         public string Nome { get; set; }
         public bool IsActive { get; set; }
+        public string Descricao { get; set; }
+
+        public ExpedicaoTypeEnum ExpedicaoType { get; set; }
+
 
         public Expedicao(long id, string nome, bool isActive)
         {
@@ -53,5 +51,24 @@ namespace MaiaIO.TDD.CLI
             Nome = nome;
             IsActive = isActive;
         }
+
+        public Expedicao(long id, string nome, bool isActive, ExpedicaoTypeEnum expedicaoType)
+        {
+            ExpedicaoType = expedicaoType;
+            Id = id;
+            Nome = nome;
+            IsActive = isActive;
+
+        }
+    }
+
+    public enum ExpedicaoTypeEnum
+    {
+
+        None = 0b_0000,
+        Correios = 0b_0001,
+        Transportadora = 0b_0010,
+        CarroPropio = 0b_0100,
+        Retira = 0b_1000
     }
 }

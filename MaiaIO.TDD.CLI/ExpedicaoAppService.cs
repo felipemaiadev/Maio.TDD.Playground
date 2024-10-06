@@ -1,13 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace MaiaIO.TDD.CLI
 {
@@ -23,7 +14,7 @@ namespace MaiaIO.TDD.CLI
 
 
         private readonly ICriterioBusca _bucador;
-        public static void GetCriterios(ExpedicaoListarRequest request)
+        public static void GetCriterios(FactoryListarRequest request)
         {
             var propiedades = request.GetType().GetProperties();
 
@@ -41,15 +32,9 @@ namespace MaiaIO.TDD.CLI
 
             }
 
-            var searchCondition = new Dictionary<string, dynamic>();
-
-            searchCondition.Add("Id", 1);
-            searchCondition.Add("Name", "XTC");
-            searchCondition.Add("IsActive", false);
-
+            var searchCondition = BuildParser(new Expedicao(2, string.Empty, false));
             ICriterioBusca busca = CriterioSelect("BuscarPorStatus");
 
-            var predicate = new Expedicao ( long.MinValue, string.Empty, false );
 
             Console.WriteLine(@"<===== BUSCA POR STATUS =====>");
 
@@ -65,10 +50,10 @@ namespace MaiaIO.TDD.CLI
 
             busca = CriterioSelect("BuscarPorId");
 
-           
+
 
             result = MockResult.Where(busca.Buscar(searchCondition));
-           
+
             foreach (var item in result)
             {
                 Console.WriteLine(item.Nome);
@@ -84,14 +69,30 @@ namespace MaiaIO.TDD.CLI
       };
 
 
-    }
+        public static Dictionary<string, dynamic> BuildParser(object obj)
+        {
 
+            var parameterColletion = new Dictionary<string, dynamic>();
+
+            var properties = obj.GetType().GetProperties();
+
+
+            foreach (var x in properties)
+                parameterColletion.Add(x.Name, x.GetValue(obj));
+
+
+            //Console.WriteLine(parameterColletion["Id"] == long.MaxValue);
+
+            return parameterColletion;
+        }
+
+    }
 
 
 
     public interface ICriterioBusca
     {
-        Func<Expedicao, bool> Buscar(Dictionary<string,dynamic> search);
+        Func<Expedicao, bool> Buscar(Dictionary<string, dynamic> search);
     }
 
     public class BuscarPorId : ICriterioBusca
@@ -106,7 +107,7 @@ namespace MaiaIO.TDD.CLI
     {
         public Func<Expedicao, bool> Buscar(Dictionary<string, dynamic> search)
         {
-            return x => x.IsActive == search["IsActive"] ;
+            return x => x.IsActive == search["IsActive"];
         }
     }
 
@@ -114,7 +115,7 @@ namespace MaiaIO.TDD.CLI
     {
         public Func<Expedicao, bool> Buscar(Dictionary<string, dynamic> search)
         {
-            return x => x.IsActive == search["IsActive"]  && x.Id == search["Id"];
+            return x => x.IsActive == search["IsActive"] && x.Id == search["Id"];
         }
     }
 

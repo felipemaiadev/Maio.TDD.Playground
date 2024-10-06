@@ -1,16 +1,14 @@
 using MaiaIO.TDD.CLI.Entities;
 using MaiaIO.TDD.CLI.Repository;
-using MaiaIO.TDD.CLI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
-using Moq;
 
 namespace MaiaIO.TDD.CLI.Teste
 {
     [Collection(nameof(UserCollection))]
     public class BaseServiceTestes
     {
-     
+
         UsuarioTesteFixture _fixture;
         private readonly IConfiguration _configuration;
 
@@ -21,7 +19,7 @@ namespace MaiaIO.TDD.CLI.Teste
             this._configuration = configuration;
         }
 
-        [Fact(DisplayName ="Testa chamadas interna do servico")]
+        [Fact(DisplayName = "Testa chamadas interna do servico")]
         [Trait("UserService", "Testa persistencia do usuario")]
         public async void BaseService_DevePersistirUsuarioNoCadastro()
         {
@@ -37,10 +35,10 @@ namespace MaiaIO.TDD.CLI.Teste
 
 
             //Assert
-            
+
             //userService.Setup(x => x.AddUser(It.IsAny<User>())).ReturnsAsync(true);
 
-             Assert.True(await userServiceBase.AddUser(user));
+            Assert.True(await userServiceBase.AddUser(user));
 
         }
     }

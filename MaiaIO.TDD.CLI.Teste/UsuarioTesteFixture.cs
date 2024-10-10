@@ -1,12 +1,5 @@
-﻿using Bogus;
-using Bogus.DataSets;
-using MaiaIO.TDD.CLI.Entities;
-using System;
-using System.Collections.Generic;
+﻿using MaiaIO.TDD.CLI.Entities;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MaiaIO.TDD.CLI.Teste
 {
@@ -37,7 +30,7 @@ namespace MaiaIO.TDD.CLI.Teste
 
         public void Dispose()
         {
-            Debug.WriteLine(@"Dispose Object: " , this.ToString());
+            Debug.WriteLine(@"Dispose Object: ", this.ToString());
 
         }
     }

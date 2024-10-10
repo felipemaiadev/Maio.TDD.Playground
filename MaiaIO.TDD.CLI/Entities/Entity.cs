@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MaiaIO.TDD.CLI.Entities
+﻿namespace MaiaIO.TDD.CLI.Entities
 {
     public abstract class Entity
     {
@@ -13,7 +7,7 @@ namespace MaiaIO.TDD.CLI.Entities
 
         protected Entity()
         {
-            
+
             Id = Guid.NewGuid();
         }
     }

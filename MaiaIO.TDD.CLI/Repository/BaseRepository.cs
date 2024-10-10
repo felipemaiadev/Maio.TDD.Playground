@@ -1,10 +1,5 @@
 ﻿using MaiaIO.TDD.CLI.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MaiaIO.TDD.CLI.Repository
 {
@@ -20,9 +15,9 @@ namespace MaiaIO.TDD.CLI.Repository
 
         public async Task<bool> AddUser(T entity)
         {
-             await _context.AddAsync(entity);
-             var result = await _context.SaveChangesAsync();
-            return result > 0; 
+            await _context.AddAsync(entity);
+            var result = await _context.SaveChangesAsync();
+            return result > 0;
         }
 
         public async Task<T> RemoveUser(T entity)

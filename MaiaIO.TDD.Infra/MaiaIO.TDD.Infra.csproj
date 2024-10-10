@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="3.4.0" />
+    <PackageReference Include="MySQL.Data" Version="9.0.0" />
+    <PackageReference Include="NHibernate" Version="5.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MaiaIO.TDD.Domain\MaiaIO.TDD.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

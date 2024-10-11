@@ -16,10 +16,12 @@ var instanceBusca = FactoryAppService.CriterioSelect("BuscarPorId");
 pms.Add("OPR", ">=");
 
 var predicate = instanceBusca.Buscar(pms);
-
+                                                                                    
 DbContext.Initialize();
 
-var session = DbContext.OpenSession();
+var factory = DbContext.sessionFactory;
+
+var session = factory.OpenSession();
 
 if (session != null)
 {

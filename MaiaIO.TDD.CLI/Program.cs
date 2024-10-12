@@ -5,18 +5,18 @@ using MaiaIO.TDD.CLI;
 using MaiaIO.TDD.Domain.Factories.Entities;
 using MaiaIO.TDD.Infra;
 
-var busca = new FactoryListarRequest { Id= 0,Name= "", IsActive=true, Country="BRAZIL" };
+var busca = new FactoryListarRequest { Id = 0, Name = "", IsActive = true, Country = "BRAZIL" };
 var service = new FactoryAppService();
 
 //FactoryAppService.GetCriterios(busca);
 
-var pms =  FactoryAppService.BuildParser(busca);
+var pms = FactoryAppService.BuildParser(busca);
 var instanceBusca = FactoryAppService.CriterioSelect("BuscarPorId");
 
 pms.Add("OPR", ">=");
 
 var predicate = instanceBusca.Buscar(pms);
-                                                                                    
+
 DbContext.Initialize();
 
 var factory = DbContext.sessionFactory;

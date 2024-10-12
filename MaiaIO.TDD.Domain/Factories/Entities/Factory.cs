@@ -5,7 +5,7 @@ namespace MaiaIO.TDD.Domain.Factories.Entities
 {
     public class Factory : Entity
     {
-        public virtual long CodRef { get; protected set; }
+        public virtual long Id { get; protected set; }
         public virtual string Name { get; protected set; }
         public virtual string Description { get; protected set; }
         public virtual string Coutry { get; protected set; }

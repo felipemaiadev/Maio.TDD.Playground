@@ -10,18 +10,18 @@ namespace MaiaIO.TDD.Infra.Factories.Mappings
         {
             Schema("FTW");
             Table("Factory");
-            Id(x => x.Id).GeneratedBy.Guid();
-            Map(x => x.CodRef).Column("CodRef");
+            Id(x => x.Id).Column("Id");
+            Map(x => x.UID).Column("UID");
             Map(x => x.Name).Column("Name");
             Map(x => x.Description).Column("Description");
             Map(x => x.Coutry).Column("Country");
             Map(x => x.IsActive).Column("IsActive");
             Map(x => x.AssemblyStamp).Column("AssemblyStamp");
-            //HasMany(x => x.Lines)
-            //    .Table("ProductionLine")
-            //    .KeyColumn("Id")
-            //    .Not
-            //    .LazyLoad();
+            HasMany(x => x.Lines)
+                .Table("ProductionLine")
+                .KeyColumn("Id")
+                .Not
+                .LazyLoad();
 
 
         }

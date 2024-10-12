@@ -17,7 +17,7 @@ namespace MaiaIO.TDD.CLI.Teste
         {
             return new User
             {
-                Id = Guid.NewGuid(),
+                UID = Guid.NewGuid(),
                 cargo = "Analista de Sistemas",
                 nome = "Fulano De Tal",
                 idade = 30

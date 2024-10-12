@@ -6,9 +6,10 @@ namespace MaiaIO.TDD.Domain.ProductionLines.Entities
 {
     public class ProductionLine : Entity
     {
-        public virtual long CodRef { get; protected set; }
+        public virtual long Id { get; protected set; }
         public virtual string Name { get; protected set; }
         public virtual string Descriptrion { get; protected set; }
+        public virtual long IdFactory { get; protected set; }
         public virtual Factory Factory { get; protected set; }
         public virtual IEnumerable<Machine> Machines { get; protected set; }
         public virtual bool IsActive { get; protected set; }

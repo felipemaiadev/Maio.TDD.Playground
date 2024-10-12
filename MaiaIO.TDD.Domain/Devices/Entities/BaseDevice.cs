@@ -13,6 +13,8 @@ namespace MaiaIO.TDD.Domain.Devices.Entities
 
         public virtual string Description { get; set; }
         public virtual TypeVendorEnum Vendor { get; set; }
+        public virtual string VendorCodeUID { get; protected set; }
+        public virtual string VendorCodeProductUID { get; protected set; }
 
     }
 

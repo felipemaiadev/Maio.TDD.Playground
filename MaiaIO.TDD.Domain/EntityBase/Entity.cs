@@ -3,7 +3,12 @@
     public abstract class Entity
     {
 
-        public virtual Guid Id { get; set; }
+        public virtual Guid UID { get; set; }
+
+        protected Entity()
+        {
+            
+        }
 
     }
 }

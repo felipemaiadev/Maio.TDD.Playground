@@ -78,9 +78,9 @@ namespace MaiaIO.TDD.CLI
            
             return value switch
             {
-                "==" => x => x.CodRef == search["Id"],
-                ">=" => x => x.CodRef >= search["Id"],
-                _ =>  x => x.CodRef == search["Id"]
+                "==" => x => x.Id == search["Id"],
+                ">=" => x => x.Id >= search["Id"],
+                _ =>  x => x.Id == search["Id"]
             };
                
         }

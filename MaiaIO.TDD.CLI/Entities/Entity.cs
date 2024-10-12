@@ -3,12 +3,12 @@
     public abstract class Entity
     {
 
-        public Guid Id { get; set; }
+        public Guid UID { get; set; }
 
         protected Entity()
         {
 
-            Id = Guid.NewGuid();
+            UID = Guid.NewGuid();
         }
     }
 }

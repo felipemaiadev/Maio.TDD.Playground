@@ -10,7 +10,9 @@ namespace MaiaIO.TDD.Domain.Machines.Entities
 {
     public class BaseMachine : Entity
     {
+        public virtual long Id { get; set; }
         public virtual string Name { get; set; }
+        public virtual string InventoryCode { get; set; }
 
         public virtual IEnumerable<BaseDevice> DeviceList { get; set; }
 

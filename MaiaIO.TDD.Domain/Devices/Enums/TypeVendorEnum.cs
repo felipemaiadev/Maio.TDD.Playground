@@ -9,11 +9,11 @@ namespace MaiaIO.TDD.Domain.Devices.Enums
     public enum TypeVendorEnum
     {
 
-        Siemens,
-        Rockwell,
-        Schineider,
-        WEG,
-        ABB
+        Siemens = 1,
+        Rockwell = 2,
+        Schineider = 3,
+        WEG = 4,
+        ABB = 5
         
     }
 }

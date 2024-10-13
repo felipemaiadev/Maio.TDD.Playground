@@ -1,4 +1,5 @@
-﻿using MaiaIO.TDD.Domain.Factories.Entities;
+﻿using MaiaIO.TDD.Domain.Devices.Enums;
+using MaiaIO.TDD.Domain.Factories.Entities;
 using System.Data;
 
 namespace MaiaIO.TDD.CLI
@@ -39,6 +40,7 @@ namespace MaiaIO.TDD.CLI
           "BuscarPorId" => new BuscarFactoryPorId(),
           "BuscarPorStatus" => new BuscarFactoryPorAtivo(),
           "BuscarPorPais" => new BuscarFactoryPorPais(),
+          "BuscarComLinhasAtivas" => new BuscarFactoryComMaquinasAtivas(),
           _ => throw new ArgumentException("Ausencia de criterios"),
       };
 
@@ -109,6 +111,20 @@ namespace MaiaIO.TDD.CLI
             return x => x.Coutry.Contains(search["Country"]);
         }
     }
+
+    public class BuscarFactoryComMaquinasAtivas : ICriterioBuscarFactory
+    {
+
+        public Func<Factory, bool> Buscar(Dictionary<string, dynamic> search)
+        {
+            return x => x.Lines.Count() > 0
+                        //&& x.Lines.Any(x => x.Machines.Any(y => y.DeviceList.Any(z => z.VendorCodeUID.Contains(@"6ES5"))))
+                        //&& x.Lines.Any(x => x.IsActive == search["LineStatus"]);
+            && x.Lines.Any(x => x.Machines.Any(z => z.InventoryCode.Contains("ENR")));
+        }
+
+    }
+    
 
     public class BuscaFactoryExecutor
     {

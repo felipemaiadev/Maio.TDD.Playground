@@ -16,8 +16,17 @@ namespace MaiaIO.TDD.Domain.Machines.Entities
         public virtual string Name { get; protected set; }
         public virtual string InventoryCode { get; protected set; }
         public virtual ProductionLine ProductionLine { get; protected set; }
-        //public virtual IEnumerable<BaseDevice> DeviceList { get; protected set; }
+        public virtual IList<BaseDevice> DeviceList { get; protected set; }
 
-        public BaseMachine() { }
+        public BaseMachine() 
+        { 
+            this.SetDeviceList(new List<BaseDevice>());
+        }
+
+        public virtual void SetDeviceList(IList<BaseDevice> deviceList)
+        {
+            this.DeviceList = deviceList;
+        }
+
     }
 }

@@ -8,8 +8,11 @@ namespace MaiaIO.TDD.Domain.Devices.Enums
 {
     public enum TypeDeviceEnum
     {
-        Field = 0,
-        PLC   = 1,
-        Driver = 2
+        Field = 1,
+        PLC   = 2,
+        Driver = 1
+   
     }
+
+   
 }

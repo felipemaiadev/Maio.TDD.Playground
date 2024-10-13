@@ -1,5 +1,7 @@
 ﻿using MaiaIO.TDD.Domain.Devices.Enums;
 using MaiaIO.TDD.Domain.EntityBase;
+using MaiaIO.TDD.Domain.Machines.Entities;
+using System.Reflection.PortableExecutable;
 
 namespace MaiaIO.TDD.Domain.Devices.Entities
 {
@@ -12,11 +14,21 @@ namespace MaiaIO.TDD.Domain.Devices.Entities
         public virtual TypeDeviceEnum TypeDevice { get; protected set; }
         public virtual string VendorCodeUID { get; protected set; }
         public virtual string VendorSerialNumber { get; protected set; }
-
+        public virtual int DeviceSID { get; protected set; }
+        public virtual string DeviceSUID { get; protected set; }
+        public virtual IList<BaseMachine> Machines { get; protected set; }
 
         protected BaseDevice()
         {
 
+            this.SetMachines(new List<BaseMachine>());
+        }
+
+
+
+        public virtual void SetMachines(IList<BaseMachine> machines)
+        {
+            this.Machines = machines;
         }
     }
 

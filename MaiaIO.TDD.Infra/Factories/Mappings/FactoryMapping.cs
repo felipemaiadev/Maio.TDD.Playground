@@ -20,11 +20,13 @@ namespace MaiaIO.TDD.Infra.Factories.Mappings
             HasMany(x => x.Lines)
                 .Table("ProductionLine")
                 .KeyColumn("Id")
-                .Not
-                .LazyLoad();
+                .Fetch.Join();
 
 
+           
         }
+
+
 
     }
 }

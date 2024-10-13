@@ -3,10 +3,10 @@ using MaiaIO.TDD.Domain.ProductionLines.Entities;
 
 namespace MaiaIO.TDD.Infra.ProductionLines.Mappings
 {
-    public class ProductionLineMappings : ClassMap<ProductionLine>
+    public class MachineMappings : ClassMap<ProductionLine>
     {
 
-        public ProductionLineMappings()
+        public MachineMappings()
         {
             Schema("FTW");
             Table("ProductionLine");
@@ -19,6 +19,10 @@ namespace MaiaIO.TDD.Infra.ProductionLines.Mappings
             Map(x => x.AssemblyStamp).Column("AssemblyStamp");
             Map(x => x.LastUpdate).Column("LastUpdate");
             References(r => r.Factory);
+            HasMany(r => r.Machines)
+                .Schema("FTW")
+                .Table("Machine")
+                .KeyColumn("ProductionLineId");
 
         }
     }

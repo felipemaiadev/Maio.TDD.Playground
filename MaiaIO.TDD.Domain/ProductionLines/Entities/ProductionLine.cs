@@ -1,5 +1,6 @@
 ﻿using MaiaIO.TDD.Domain.EntityBase;
 using MaiaIO.TDD.Domain.Factories.Entities;
+using MaiaIO.TDD.Domain.Machines.Entities;
 using System.Reflection.PortableExecutable;
 
 namespace MaiaIO.TDD.Domain.ProductionLines.Entities
@@ -11,7 +12,7 @@ namespace MaiaIO.TDD.Domain.ProductionLines.Entities
         public virtual string Descriptrion { get; protected set; }
         public virtual long IdFactory { get; protected set; }
         public virtual Factory Factory { get; protected set; }
-        public virtual IEnumerable<Machine> Machines { get; protected set; }
+        public virtual IEnumerable<BaseMachine> Machines { get; protected set; }
         public virtual bool IsActive { get; protected set; }
         public virtual DateTime AssemblyStamp { get; protected set; }
         public virtual DateTime LastUpdate { get; protected set; }

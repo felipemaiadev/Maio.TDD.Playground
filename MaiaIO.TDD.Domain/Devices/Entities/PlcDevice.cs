@@ -9,10 +9,10 @@ namespace MaiaIO.TDD.Domain.Devices.Entities
 {
     public class PlcDevice : BaseDevice
     {
-
+        
         public virtual int SerialCommunicationPorts { get; protected set; }
 
-        public virtual IEnumerable<SerialProtocolsEnum> SerialProtocols{ get; protected set; }
+        public virtual IEnumerable<SerialProtocolsEnum> SerialProtocols { get; protected set; }
 
         public virtual int EthernetCommunicationPorts { get; protected set; }
 

@@ -2,16 +2,19 @@
 
 
 using MaiaIO.TDD.CLI;
+using MaiaIO.TDD.Domain.Devices.Enums;
 using MaiaIO.TDD.Domain.Factories.Entities;
 using MaiaIO.TDD.Infra;
 
-var busca = new FactoryListarRequest { Id= 0,Name= "", IsActive=true, Country="BRAZIL" };
+var busca = new FactoryListarRequest { Id = 0, Name = "", IsActive = true, 
+                                       Country = "BRAZIL", VendorType = TypeDeviceEnum.PLC ,
+                                       LineStatus = true };
 var service = new FactoryAppService();
 
 //FactoryAppService.GetCriterios(busca);
 
-var pms =  FactoryAppService.BuildParser(busca);
-var instanceBusca = FactoryAppService.CriterioSelect("BuscarPorId");
+var pms = FactoryAppService.BuildParser(busca);
+var instanceBusca = FactoryAppService.CriterioSelect("BuscarComLinhasAtivas");
 
 pms.Add("OPR", ">=");
 
@@ -19,7 +22,9 @@ var predicate = instanceBusca.Buscar(pms);
 
 DbContext.Initialize();
 
-var session = DbContext.OpenSession();
+var factory = DbContext.sessionFactory;
+
+var session = factory.OpenSession();
 
 if (session != null)
 {
@@ -28,6 +33,7 @@ if (session != null)
                         .Where(predicate)
                         .ToList();
 
+    
     foreach (var row in result)
         Console.WriteLine($"{row.Name} - {row.Description} - {row.AssemblyStamp}");
 

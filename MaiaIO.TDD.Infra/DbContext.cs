@@ -1,13 +1,14 @@
-﻿using FluentNHibernate.Automapping;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using MaiaIO.TDD.Domain.Factories.Entities;
+using MaiaIO.TDD.Infra.Factories.Mappings;
 using NHibernate;
 
 namespace MaiaIO.TDD.Infra
 {
     public class DbContext
     {
+
+        public static ISessionFactory sessionFactory => _sessionFactory;
 
         private static ISessionFactory _sessionFactory { get; set; }
         private static string connectionString = @"server=127.0.0.1;Port=3306;database=FTW;Uid=root;pwd=my-secret-pw;";
@@ -27,8 +28,11 @@ namespace MaiaIO.TDD.Infra
                 {
 
 
+                    NHibernate.Cfg.Configuration config = new NHibernate.Cfg.Configuration();
 
-                    //var session = config.SessionFactory();
+                    var session = config.SessionFactory();
+
+                    
 
                     _sessionFactory = Fluently.Configure()
                                             .Database(MySQLConfiguration.Standard
@@ -36,7 +40,7 @@ namespace MaiaIO.TDD.Infra
                                             .Mappings(m =>
                                             {
                                                 //m.HbmMappings.AddFromAssemblyOf<FactoryMapping>();
-                                                m.AutoMappings.Add(AutoMap.AssemblyOf<Factory>());
+                                                m.FluentMappings.AddFromAssemblyOf<FactoryMapping>();
                                             })
                                             .BuildSessionFactory();
 

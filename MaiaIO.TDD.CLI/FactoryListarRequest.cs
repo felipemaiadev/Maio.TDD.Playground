@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using MaiaIO.TDD.Domain.Devices.Enums;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace MaiaIO.TDD.CLI
@@ -20,7 +21,11 @@ namespace MaiaIO.TDD.CLI
         [Required]
         [DefaultValue(false)]
         public bool? IsActive { get; set; }
+        [DefaultValue(false)]
+        public bool? LineStatus { get; set; }
 
+        [Required]
+        public TypeDeviceEnum? VendorType { get; set; }
 
 
 

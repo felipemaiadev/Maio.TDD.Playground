@@ -18,11 +18,13 @@ namespace MaiaIO.TDD.Infra.Machines.Mappings
             Map(x => x.IdProductionLine).Column("ProductionLine_Id").Not.Update();
             References(r => r.ProductionLine).Not.LazyLoad();
 
-            HasManyToMany(r => r.DeviceList).Not.LazyLoad()
+            HasManyToMany(r => r.DeviceList)
                 .Schema("FTW")
                 .Table("NMachinesDevices")
                 .ParentKeyColumn("IDMACHINE")
-                .ChildKeyColumn("IDDEVICE");
+                .ChildKeyColumn("IDDEVICE")
+                .Fetch
+                .Join();
 
                 
                 

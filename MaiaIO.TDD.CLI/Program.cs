@@ -2,9 +2,13 @@
 
 
 using MaiaIO.TDD.CLI;
+using MaiaIO.TDD.Domain.Devices.Entities;
 using MaiaIO.TDD.Domain.Devices.Enums;
 using MaiaIO.TDD.Domain.Factories.Entities;
+using MaiaIO.TDD.Domain.Machines.Entities;
 using MaiaIO.TDD.Infra;
+using NHibernate.Linq;
+using System.Reflection.PortableExecutable;
 
 var busca = new FactoryListarRequest { Id = 0, Name = "", IsActive = true, 
                                        Country = "BRAZIL", VendorType = TypeDeviceEnum.PLC ,
@@ -26,6 +30,8 @@ var factory = DbContext.sessionFactory;
 
 var session = factory.OpenSession();
 
+session.CreateCriteria<BaseMachine>().SetFetchMode("DeviceList", NHibernate.FetchMode.Eager);
+
 if (session != null)
 {
 
@@ -33,8 +39,16 @@ if (session != null)
                         .Where(predicate)
                         .ToList();
 
-    
+    //var result = session.Query<BaseMachine>()
+    //                        //.Fetch(x => x.DeviceList)
+    //                        .Where(x => x.Id == 1)
+    //                        .ToList();
+
     foreach (var row in result)
-        Console.WriteLine($"{row.Name} - {row.Description} - {row.AssemblyStamp}");
+        Console.WriteLine($"{row.Name} - {row.Description} - {row.AssemblyStamp} - {row.Lines.FirstOrDefault().Machines.FirstOrDefault()}");
+
+
+    //foreach (var row in result)
+    //    Console.WriteLine($"{row.UID} - {row.ProductionLine}");
 
 }

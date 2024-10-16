@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using MaiaIO.TDD.Infra.Devices.Mappings;
 using MaiaIO.TDD.Infra.Factories.Mappings;
 using NHibernate;
 
@@ -40,7 +41,7 @@ namespace MaiaIO.TDD.Infra
                                             .Mappings(m =>
                                             {
                                                 //m.HbmMappings.AddFromAssemblyOf<FactoryMapping>();
-                                                m.FluentMappings.AddFromAssemblyOf<FactoryMapping>();
+                                                m.FluentMappings.AddFromAssemblyOf<BaseDeviceMappings>();
                                             })
                                             .BuildSessionFactory();
 

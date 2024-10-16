@@ -119,8 +119,8 @@ namespace MaiaIO.TDD.CLI
         {
             return x => x.Lines.Count() > 0
                         //&& x.Lines.Any(x => x.Machines.Any(y => y.DeviceList.Any(z => z.VendorCodeUID.Contains(@"6ES5"))))
-                        //&& x.Lines.Any(x => x.IsActive == search["LineStatus"]);
-            && x.Lines.Any(x => x.Machines.Any(z => z.InventoryCode.Contains("ENR")));
+                        && x.Lines.Any(x => x.IsActive == search["LineStatus"] && x.Machines.Any(x => x.InventoryCode.Contains(@"ENR")));
+            //&& x.Lines.Any(x => x.Machines.Any(z => z.InventoryCode.Contains("ENR")));
         }
 
     }

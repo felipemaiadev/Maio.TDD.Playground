@@ -24,7 +24,7 @@ namespace MaiaIO.TDD.Domain.Machines.Entities
         }
 
         public virtual void SetDeviceList(IList<BaseDevice> deviceList)
-        {
+         {
             this.DeviceList = deviceList;
         }
 

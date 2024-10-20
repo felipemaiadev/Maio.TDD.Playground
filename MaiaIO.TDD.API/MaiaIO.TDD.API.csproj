@@ -9,8 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MaiaIO.TDD.Domain\MaiaIO.TDD.Domain.csproj" />
+    <ProjectReference Include="..\MaiaIO.TDD.Infra\MaiaIO.TDD.Infra.csproj" />
+    <ProjectReference Include="..\MaiaIO.TDD.IoC\MaiaIO.TDD.IoC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Base\" />
   </ItemGroup>
 
 </Project>

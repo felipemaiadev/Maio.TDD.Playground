@@ -108,7 +108,7 @@ namespace MaiaIO.TDD.CLI
     {
         public Func<Factory, bool> Buscar(Dictionary<string, dynamic> search)
         {
-            return x => x.Coutry.Contains(search["Country"]);
+            return x => x.Country.Contains(search["Country"]);
         }
     }
 

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MaiaIO.TDD.Aplication\MaiaIO.TDD.Aplication.csproj" />
     <ProjectReference Include="..\MaiaIO.TDD.Domain\MaiaIO.TDD.Domain.csproj" />
     <ProjectReference Include="..\MaiaIO.TDD.Infra\MaiaIO.TDD.Infra.csproj" />
     <ProjectReference Include="..\MaiaIO.TDD.IoC\MaiaIO.TDD.IoC.csproj" />

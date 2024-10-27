@@ -7,7 +7,7 @@
 
         protected Entity()
         {
-            
+            UID = Guid.NewGuid();
         }
 
     }

@@ -1,7 +1,8 @@
-﻿using MaiaIO.TDD.Domain.Devices.Servicos.interfaces;
-using MaiaIO.TDD.Domain.Factories.Commands;
+﻿using MaiaIO.TDD.Domain.Factories.Commands;
 using MaiaIO.TDD.Domain.Factories.Entities;
 using MaiaIO.TDD.Domain.Factories.Repositories.Interfaces;
+using MaiaIO.TDD.Domain.Factories.Services.Interface;
+using MaiaIO.TDD.Domain.ProductionLines.Entities;
 using Microsoft.VisualBasic;
 
 namespace MaiaIO.TDD.Domain.Factories.Services
@@ -15,24 +16,16 @@ namespace MaiaIO.TDD.Domain.Factories.Services
         {
             _factoryRepository = factoryRepository;
         }
-        public Factory InsertAsync(Factory factory)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Factory UpdateAsync(Factory factory)
+        public async Task<Factory> InsertAsync(FactoryInsertCommand factory)
         {
-            throw new NotImplementedException();
-        }
-
-        public Factory DeleteAsync(Factory factory)
-        {
-            throw new NotImplementedException();
+            var validFactory = await Instantiate(factory);
+           return await _factoryRepository.InsertAsync(validFactory);
         }
 
         public async Task<IEnumerable<Factory>> GetListAsync()
         {
-            
+
             return await _factoryRepository.GetListAsync();
         }
 
@@ -40,14 +33,26 @@ namespace MaiaIO.TDD.Domain.Factories.Services
         {
             return await _factoryRepository.GetByIdAsync(id);
         }
-        //public async Task<Factory> GetAllFactories(FactoryGetListCommand command)
-        //{
-        //    //var resporitory = new FactoryRepository();
 
-        //    //var result = await new List<Factory> { new Factory { Id = 1 }, new Factory { Id = 2 } } 
+        public async Task<Factory> Instantiate(FactoryInsertCommand factoryInsertCommand)
+        {
+            Factory validFactory =  await Validate(factoryInsertCommand);
+                
+            return validFactory;
+        }
 
-        //    return await GetFactories();
-        //}
+        public async Task<Factory> Validate(FactoryInsertCommand factoryInsertCommand)
+        {
+            Factory factory = new Factory();
+
+            factory.SetName(factoryInsertCommand.Name);
+            factory.SetDescription(factoryInsertCommand.Description);
+            factory.SetCountry(factoryInsertCommand.Country);
+            factory.SetStatus(factoryInsertCommand.IsActive);
+            factory.SetLines(new List<ProductionLine>());
+
+            return factory;
+        }
 
 
 

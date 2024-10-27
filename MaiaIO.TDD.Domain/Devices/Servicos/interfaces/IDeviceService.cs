@@ -3,7 +3,7 @@
 
 namespace MaiaIO.TDD.Domain.Devices.Servicos.interfaces
 {
-    public interface IFactoryService
+    public interface IDeviceService
     {
         Factory InsertAsync(Factory factory);
         Factory UpdateAsync(Factory factory);

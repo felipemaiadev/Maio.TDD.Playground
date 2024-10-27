@@ -17,6 +17,11 @@ namespace MaiaIO.TDD.Domain.Factories.Entities
         protected Factory(string name, string description, string country, bool isAtive) 
         { 
          
+          SetName(name);
+          SetDescription(description);
+          SetDescription(country);
+          SetStatus(isAtive);
+          AssemblyStamp = DateTime.UtcNow;   
           this.SetLines(new List<ProductionLine>());
         }
 
@@ -24,10 +29,12 @@ namespace MaiaIO.TDD.Domain.Factories.Entities
         { }
 
 
-        public virtual void SetLines(IList<ProductionLine> lines)
-        {
-            this.Lines = lines;
-        }
+        public  virtual void SetLines(IList<ProductionLine> lines) => this.Lines = lines;
+        public virtual void SetName(string name) => Name = name;
+        public virtual void SetDescription(string description) => Description = description;
+        public virtual void SetCountry(string country) => Country = country;
+        public virtual void SetStatus(bool  isAtive) => IsActive = isAtive;
+
     }
 
 

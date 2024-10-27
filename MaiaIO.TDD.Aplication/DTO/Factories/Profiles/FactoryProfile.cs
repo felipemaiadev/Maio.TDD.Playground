@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MaiaIO.TDD.API.DTO.Factories.Requests;
 using MaiaIO.TDD.API.DTO.Factories.Response;
+using MaiaIO.TDD.Aplication.DTO.Factories.Requests;
 using MaiaIO.TDD.Domain.Factories.Commands;
 using MaiaIO.TDD.Domain.Factories.Entities;
 
@@ -16,6 +17,9 @@ namespace MaiaIO.TDD.API.DTO.Factories.Profiles
                 .ForPath(src => src.Lines, dst => dst.MapFrom(x => x.Lines))
                 .ReverseMap();
 
+            CreateMap<FactoryResponse, Factory>().ReverseMap();
+
+            CreateMap<FactoryInsertRequest, FactoryInsertCommand>();
         }
     }
 }

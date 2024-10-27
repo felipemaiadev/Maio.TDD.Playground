@@ -3,10 +3,10 @@ using MaiaIO.TDD.Domain.ProductionLines.Entities;
 
 namespace MaiaIO.TDD.Infra.ProductionLines.Mappings
 {
-    public class MachineMappings : ClassMap<ProductionLine>
+    public class ProductionLineMappings : ClassMap<ProductionLine>
     {
 
-        public MachineMappings()
+        public ProductionLineMappings()
         {
             Schema("FTW");
             Table("ProductionLine");

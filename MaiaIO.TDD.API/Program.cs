@@ -1,13 +1,11 @@
 using MaiaIO.TDD.API.DTO.Factories.Profiles;
 using MaiaIO.TDD.API.Services.Factories;
-using MaiaIO.TDD.API.Services.Factories.NewFolder;
-using MaiaIO.TDD.Domain.Devices.Servicos.interfaces;
+using MaiaIO.TDD.API.Services.Factories.Interfaces;
 using MaiaIO.TDD.Domain.Factories.Repositories.Interfaces;
 using MaiaIO.TDD.Domain.Factories.Services;
+using MaiaIO.TDD.Domain.Factories.Services.Interface;
 using MaiaIO.TDD.Infra.Factories.Repositories;
 using MaiaIO.TDD.IoC;
-using NHibernate.Cfg;
-using System.Configuration;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,9 +30,12 @@ builder.Services.AddAutoMapper(typeof(FactoryProfile).Assembly);
 
 //builder.Services.AddSingleton<IMapper>();
 
-builder.Services.AddScoped<IFactoryAppService, FactoryAppService>();
-builder.Services.AddScoped<IFactoryService, FactoryService>();
-builder.Services.AddScoped<IFactoryRepository, FactoryRepository>();
+//builder.Services.AddScoped<IFactoryAppService, FactoryAppService>();
+//builder.Services.AddScoped<IFactoryService, FactoryService>();
+//builder.Services.AddScoped<IFactoryRepository, FactoryRepository>();
+
+builder.Services.DIConfig();
+
 
 builder.Services.AddMvc().AddJsonOptions(opt =>
 {

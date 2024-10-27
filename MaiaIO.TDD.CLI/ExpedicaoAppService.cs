@@ -14,7 +14,7 @@ namespace MaiaIO.TDD.CLI
 
 
         private readonly ICriterioBusca _bucador;
-        public static void GetCriterios(FactoryListarRequest request)
+        public static void GetCriterios(FabricaListarRequest request)
         {
             var propiedades = request.GetType().GetProperties();
 

@@ -1,5 +1,6 @@
 ﻿using MaiaIO.TDD.Domain.Factories.Entities;
 using MaiaIO.TDD.Domain.Factories.Repositories.Interfaces;
+using Microsoft.VisualBasic;
 using NHibernate;
 using NHibernate.Linq;
 using System;
@@ -14,7 +15,7 @@ namespace MaiaIO.TDD.Infra.Factories.Repositories
     {
         public async Task<IEnumerable<Factory>> GetListAsync()
         {
-            //DbContext.Initialize();
+            DbContext.Initialize();
             var session = DbContext.OpenSession();
             
             //session.BeginTransaction();
@@ -24,6 +25,20 @@ namespace MaiaIO.TDD.Infra.Factories.Repositories
             return result;
 
             
+        }
+
+        public async Task<Factory> InsertAsync(Factory factory)
+        {
+            DbContext.Initialize();
+            var session = DbContext.OpenSession();
+
+            var transaction =  session.BeginTransaction();
+            
+            var result = await session.SaveAsync(factory, CancellationToken.None);
+            
+            transaction.Commit();
+
+            return (Factory) result;
         }
 
         public async Task<Factory> GetByIdAsync(long id)
@@ -37,5 +52,7 @@ namespace MaiaIO.TDD.Infra.Factories.Repositories
 
             return result;
         }
+
+        
     }
 }

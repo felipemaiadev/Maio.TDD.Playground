@@ -26,8 +26,8 @@ namespace MaiaIO.TDD.Infra.Machines.Mappings
                 .Fetch
                 .Join();
 
-                
-                
+
+
         }
     }
 }

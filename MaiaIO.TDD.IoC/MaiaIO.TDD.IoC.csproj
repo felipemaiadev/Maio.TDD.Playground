@@ -11,4 +11,9 @@
     <PackageReference Include="NHibernate" Version="5.5.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MaiaIO.TDD.Aplication\MaiaIO.TDD.Aplication.csproj" />
+    <ProjectReference Include="..\MaiaIO.TDD.Infra\MaiaIO.TDD.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

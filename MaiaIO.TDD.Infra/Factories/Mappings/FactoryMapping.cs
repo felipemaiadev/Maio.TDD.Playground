@@ -10,7 +10,7 @@ namespace MaiaIO.TDD.Infra.Factories.Mappings
         {
             Schema("FTW");
             Table("Factory");
-            Id(x => x.Id).Column("Id");
+            Id(x => x.Id).Column("Id").GeneratedBy.Increment();
             Map(x => x.UID).Column("UID");
             Map(x => x.Name).Column("Name");
             Map(x => x.Description).Column("Description");
@@ -18,12 +18,13 @@ namespace MaiaIO.TDD.Infra.Factories.Mappings
             Map(x => x.IsActive).Column("IsActive");
             Map(x => x.AssemblyStamp).Column("AssemblyStamp");
             HasMany(x => x.Lines)
+                .Schema("FTW")
                 .Table("ProductionLine")
                 .KeyColumn("Id")
                 .Fetch.Join();
 
 
-           
+
         }
 
 

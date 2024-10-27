@@ -1,16 +1,15 @@
-﻿using MaiaIO.TDD.Domain.Devices.Enums;
+﻿using MaiaIO.TDD.CLI;
 using MaiaIO.TDD.Domain.Factories.Entities;
-using System.Data;
 
-namespace MaiaIO.TDD.CLI
+namespace MaiaIO.TDD.API
 {
 
 
-    public class FactoryAppService
+    public class FabricaServico
     {
 
-        private readonly ICriterioBusca _bucador;
-        public static void GetCriterios(FactoryListarRequest request)
+        private readonly ICriterioBuscarFactory _bucador;
+        public static void GetCriterios(FabricaListarRequest request)
         {
             var propiedades = request.GetType().GetProperties();
 
@@ -77,14 +76,14 @@ namespace MaiaIO.TDD.CLI
         {
 
             if (!search.TryGetValue("OPR", out var value)) search["OPR"] = "==";
-           
+
             return value switch
             {
                 "==" => x => x.Id == search["Id"],
                 ">=" => x => x.Id >= search["Id"],
-                _ =>  x => x.Id == search["Id"]
+                _ => x => x.Id == search["Id"]
             };
-               
+
         }
     }
 
@@ -124,7 +123,7 @@ namespace MaiaIO.TDD.CLI
         }
 
     }
-    
+
 
     public class BuscaFactoryExecutor
     {

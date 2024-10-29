@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MaiaIO.TDD.Aplication\MaiaIO.TDD.Aplication.csproj" />
     <ProjectReference Include="..\MaiaIO.TDD.Domain\MaiaIO.TDD.Domain.csproj" />
   </ItemGroup>
 

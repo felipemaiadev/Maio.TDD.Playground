@@ -10,15 +10,15 @@ using MaiaIO.TDD.Infra;
 using NHibernate.Linq;
 using System.Reflection.PortableExecutable;
 
-var busca = new FactoryListarRequest { Id = 0, Name = "", IsActive = true, 
+var busca = new FabricaListarRequest { Id = 0, Name = "", IsActive = true, 
                                        Country = "BRAZIL", VendorType = TypeDeviceEnum.PLC ,
                                        LineStatus = true };
-var service = new FactoryAppService();
+var service = new FabricaAppService();
 
 //FactoryAppService.GetCriterios(busca);
 
-var pms = FactoryAppService.BuildParser(busca);
-var instanceBusca = FactoryAppService.CriterioSelect("BuscarComLinhasAtivas");
+var pms = FabricaAppService.BuildParser(busca);
+var instanceBusca = FabricaAppService.CriterioSelect("BuscarComLinhasAtivas");
 
 pms.Add("OPR", ">=");
 

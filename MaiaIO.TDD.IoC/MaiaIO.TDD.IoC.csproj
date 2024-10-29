@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="NHibernate" Version="5.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MaiaIO.TDD.Aplication\MaiaIO.TDD.Aplication.csproj" />
+    <ProjectReference Include="..\MaiaIO.TDD.Infra\MaiaIO.TDD.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

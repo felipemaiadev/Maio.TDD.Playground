@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MaiaIO.TDD.CLI
 {
-    public class FactoryListarRequest
+    public class FabricaListarRequest
     {
 
         [Required]

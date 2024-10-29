@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Factories\Events\" />
+    <Folder Include="Factories\Messages\" />
+  </ItemGroup>
+
 </Project>

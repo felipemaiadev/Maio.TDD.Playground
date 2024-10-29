@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using MaiaIO.TDD.Domain.Machines.Entities;
 using MaiaIO.TDD.Infra.Devices.Mappings;
 using MaiaIO.TDD.Infra.Factories.Mappings;
 using NHibernate;
@@ -15,7 +16,10 @@ namespace MaiaIO.TDD.Infra
         private static string connectionString = @"server=127.0.0.1;Port=3306;database=FTW;Uid=root;pwd=my-secret-pw;";
         //private string connectionString = @"Server=localhost;Database=Base_FTW;Trusted_Connection=True";
 
-        public DbContext() { }
+        public DbContext(ISessionFactory sessionFactory) 
+        { 
+            _sessionFactory = sessionFactory;
+        }
 
         public static ISessionFactory Initialize()
         {
@@ -29,9 +33,9 @@ namespace MaiaIO.TDD.Infra
                 {
 
 
-                    NHibernate.Cfg.Configuration config = new NHibernate.Cfg.Configuration();
+                    //NHibernate.Cfg.Configuration config = new NHibernate.Cfg.Configuration();
 
-                    var session = config.SessionFactory();
+                    //var session = config.SessionFactory();
 
                     
 
@@ -41,7 +45,10 @@ namespace MaiaIO.TDD.Infra
                                             .Mappings(m =>
                                             {
                                                 //m.HbmMappings.AddFromAssemblyOf<FactoryMapping>();
-                                                m.FluentMappings.AddFromAssemblyOf<BaseDeviceMappings>();
+                                                m.FluentMappings.AddFromAssemblyOf<FactoryMapping>();
+                                            })
+                                            .ExposeConfiguration(c => {
+                                                c.SetProperty("show_sql", "true");  
                                             })
                                             .BuildSessionFactory();
 

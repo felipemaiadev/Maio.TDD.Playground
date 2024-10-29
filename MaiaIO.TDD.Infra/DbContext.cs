@@ -47,6 +47,9 @@ namespace MaiaIO.TDD.Infra
                                                 //m.HbmMappings.AddFromAssemblyOf<FactoryMapping>();
                                                 m.FluentMappings.AddFromAssemblyOf<FactoryMapping>();
                                             })
+                                            .ExposeConfiguration(c => {
+                                                c.SetProperty("show_sql", "true");  
+                                            })
                                             .BuildSessionFactory();
 
                 }

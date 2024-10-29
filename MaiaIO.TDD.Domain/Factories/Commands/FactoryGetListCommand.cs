@@ -13,7 +13,6 @@ namespace MaiaIO.TDD.Domain.Factories.Commands
         public string Name { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }
-        public IList<ProductionLine> Lines { get; set; }
         public bool IsActive { get; set; }
         public DateTime AssemblyStamp { get; set; }
     }

@@ -21,7 +21,8 @@ namespace MaiaIO.TDD.Infra.Factories.Mappings
                 .Schema("FTW")
                 .Table("ProductionLine")
                 .KeyColumn("Id")
-                .Fetch.Join();
+                .Fetch
+                .Join();
 
 
 

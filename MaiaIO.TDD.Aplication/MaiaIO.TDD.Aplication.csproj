@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mapper\Factories\" />
+    <Folder Include="Extensions\DTO\Factories\" />
+    <Folder Include="Extensions\DTO\" />
   </ItemGroup>
 
 </Project>

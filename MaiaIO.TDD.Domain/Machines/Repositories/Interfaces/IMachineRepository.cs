@@ -5,7 +5,7 @@ namespace MaiaIO.TDD.Domain.Machines.Repositories.Interfaces
     public interface IMachineRepository
     {
 
-        public Task<BaseMachine> GetMachineDevicesById(long id);
+        public Task<MachineDeviceDTO> GetMachineDevicesById(long id);
 
     }
 }

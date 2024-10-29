@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using MaiaIO.TDD.Domain.Factories.Entities;
-using MaiaIO.TDD.Domain.ProductionLines.Entities;
+﻿using MaiaIO.TDD.Domain.ProductionLines.Entities;
 
 namespace MaiaIO.TDD.API.DTO.Factories.Response
 {

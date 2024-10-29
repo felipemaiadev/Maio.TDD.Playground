@@ -12,7 +12,7 @@ namespace MaiaIO.TDD.API.DTO.Factories.Profiles
 
         public FactoryProfile()
         {
-            CreateMap<FactoryGetListRequest, FactoryGetListCommand>();
+                  
             CreateMap<FactoryListResponse, Factory>()
                 .ForPath(src => src.Lines, dst => dst.MapFrom(x => x.Lines))
                 .ReverseMap();

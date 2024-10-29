@@ -22,7 +22,8 @@ namespace MaiaIO.TDD.Infra.ProductionLines.Mappings
             HasMany(r => r.Machines)
                 .Schema("FTW")
                 .Table("Machine")
-                .KeyColumn("ProductionLine_Id");
+                .KeyColumn("ProductionLine_Id")
+                .LazyLoad();
 
         }
     }

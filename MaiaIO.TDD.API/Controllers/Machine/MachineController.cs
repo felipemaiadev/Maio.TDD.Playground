@@ -20,7 +20,7 @@ namespace MaiaIO.TDD.API.Controllers.Machine
         /// <param name="id"></param>
         /// <returns></returns>
 
-        [HttpGet]
+        [HttpGet("{id:long}")]
         public async Task<IActionResult> GetById([FromRoute] long id)
         {
             var result = await _machineAppService.GetMachineDeviceById(id);

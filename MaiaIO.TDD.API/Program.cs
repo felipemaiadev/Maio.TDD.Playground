@@ -1,10 +1,4 @@
 using MaiaIO.TDD.API.DTO.Factories.Profiles;
-using MaiaIO.TDD.API.Services.Factories;
-using MaiaIO.TDD.API.Services.Factories.Interfaces;
-using MaiaIO.TDD.Domain.Factories.Repositories.Interfaces;
-using MaiaIO.TDD.Domain.Factories.Services;
-using MaiaIO.TDD.Domain.Factories.Services.Interface;
-using MaiaIO.TDD.Infra.Factories.Repositories;
 using MaiaIO.TDD.IoC;
 using System.Text.Json.Serialization;
 

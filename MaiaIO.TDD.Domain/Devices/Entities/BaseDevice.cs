@@ -5,7 +5,7 @@ using System.Reflection.PortableExecutable;
 
 namespace MaiaIO.TDD.Domain.Devices.Entities
 {
-    public  class BaseDevice : Entity
+    public class BaseDevice : Entity
     {
 
         public virtual long Id { get; protected set; }
@@ -18,6 +18,15 @@ namespace MaiaIO.TDD.Domain.Devices.Entities
         public virtual string DeviceSUID { get; protected set; }
         public virtual IList<BaseMachine> Machines { get; protected set; }
 
+
+        public BaseDevice (string description, TypeVendorEnum vendor, TypeDeviceEnum typeDevice, string vendorCodeUID, string vendorSerialNumber)
+        {
+            Description = description;
+            Vendor = vendor;
+            TypeDevice = typeDevice;
+            VendorCodeUID = vendorCodeUID;
+            VendorSerialNumber = vendorSerialNumber;
+        }
         public BaseDevice()
         {
 

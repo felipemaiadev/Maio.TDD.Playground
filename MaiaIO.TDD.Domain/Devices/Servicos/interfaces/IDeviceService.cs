@@ -1,14 +1,16 @@
-﻿using MaiaIO.TDD.Domain.Factories.Entities;
+﻿using MaiaIO.TDD.Domain.Devices.Commands;
+using MaiaIO.TDD.Domain.Devices.Entities;
 
 
 namespace MaiaIO.TDD.Domain.Devices.Servicos.interfaces
 {
     public interface IDeviceService
     {
-        Factory InsertAsync(Factory factory);
-        Factory UpdateAsync(Factory factory);
-        Factory DeleteAsync(Factory factory);
-        Task<IEnumerable<Factory>> GetListAsync();
-        Task<Factory> GetByIdAsync(long id);
+        public Task InsertAsync(BaseDevice baseDevice);
+        //Factory UpdateAsync(Factory factory);
+        //Factory DeleteAsync(Factory factory);
+        public Task<IEnumerable<BaseDevice>> GetListAsync();
+        public Task<BaseDevice> GetByIdAsync(long id);
+        public BaseDevice Instantiate(DeviceInsertCommand command);
     }
 }

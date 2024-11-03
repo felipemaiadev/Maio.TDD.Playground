@@ -1,6 +1,6 @@
 ﻿namespace MaiaIO.TDD.Domain.EntityBase.Repositories.Interfaces
 {
-    public interface INhibernateRepository<T> : IQueryable<T> where T : Entity
+    public interface INhibernateRepository<T> : IQueryable<T> where T : class
     {
 
         public void Add(T entity);

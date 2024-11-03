@@ -1,37 +1,31 @@
 ﻿using MaiaIO.TDD.Domain.Factories.Entities;
 using MaiaIO.TDD.Domain.Factories.Repositories.Interfaces;
+using MaiaIO.TDD.Infra.BaseEntities.Repositories;
+using Microsoft.VisualBasic;
+using NHibernate;
 using NHibernate.Linq;
 
 namespace MaiaIO.TDD.Infra.Factories.Repositories
 {
-    public class FactoryRepository : IFactoryRepository
+    public class FactoryRepository : NHibernateRepository<Factory>, IFactoryRepository
     {
+        public FactoryRepository(ISession session) : base(session)
+        {
+        }
+
         public async Task<IEnumerable<Factory>> GetListAsync()
         {
-            DbContext.Initialize();
-            var session = DbContext.OpenSession();
+            
+            IQueryable<Factory> result =  base.GetAll();
 
-            //session.BeginTransaction();
-
-            var result = await session.Query<Factory>().ToListAsync();
-
-            return result;
-
+            return await result.ToListAsync();
 
         }
 
         public async Task<Factory> InsertAsync(Factory factory)
         {
-            DbContext.Initialize();
-            var session = DbContext.OpenSession();
-
-            var transaction = session.BeginTransaction();
-
-            var result = await session.SaveAsync(factory, CancellationToken.None);
-
-            transaction.Commit();
-
-            return (Factory)result;
+            base.Add(factory);
+            return factory;
         }
 
         public async Task<Factory> GetByIdAsync(long id)

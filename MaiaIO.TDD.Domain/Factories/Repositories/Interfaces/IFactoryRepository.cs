@@ -1,14 +1,9 @@
-﻿using MaiaIO.TDD.Domain.Factories.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MaiaIO.TDD.Domain.EntityBase.Repositories.Interfaces;
+using MaiaIO.TDD.Domain.Factories.Entities;
 
 namespace MaiaIO.TDD.Domain.Factories.Repositories.Interfaces
 {
-    public interface IFactoryRepository
+    public interface IFactoryRepository : INhibernateRepository<Factory>
     {
         public Task<IEnumerable<Factory>> GetListAsync();
         public Task<Factory> GetByIdAsync(long id);

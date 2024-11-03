@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MaiaIO.TDD.API.Controllers.Device
 {
-    public class DeviceControllercs(IDeviceAppService deviceAppService) : Controller
-    {
+    //public class DeviceControllercs(IDeviceAppService deviceAppService) : Controller
+    //{
 
-        [HttpPost]
-        public async Task<ActionResult> Insert([FromBody] DeviceInsertRequest request)
-        {
-            await deviceAppService.InsertAsync(request);
-            return Ok();
-        }
-    }
+    //    [HttpPost]
+    //    public async Task<ActionResult> Insert([FromBody] DeviceInsertRequest request)
+    //    {
+    //        await deviceAppService.InsertAsync(request);
+    //        return Ok();
+    //    }
+    //}
 }

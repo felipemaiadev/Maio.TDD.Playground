@@ -34,11 +34,11 @@ namespace MaiaIO.TDD.IoC
             //services.AddScoped<IProductionLineService, FactoryService>();
             services.AddScoped<IProductionLineRepository, ProductionLineRepository>();
 
-            services.AddScoped<IMachineAppService, MachineAppService>();
+            //services.AddScoped<IMachineAppService, MachineAppService>();
             //services.AddScoped<IMachineService, FactoryService>();
-            //services.AddScoped<IMachineRepository, MachineRepository>();
+            services.AddScoped<IMachineRepository, MachineRepository>();
 
-            services.AddScoped<IDeviceAppService, DeviceAppService>();
+            //services.AddScoped<IDeviceAppService, DeviceAppService>();
             //services.AddScoped<IMachineService, FactoryService>();
             //services.AddScoped<IMachineRepository, MachineRepository>();
 

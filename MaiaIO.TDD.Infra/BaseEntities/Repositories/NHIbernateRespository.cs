@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace MaiaIO.TDD.Infra.BaseEntities.Repositories
 {   
-        public class NHibernateRepository<T> : INhibernateRepository<T> where T : Entity
+        public class NHibernateRepository<T> : INhibernateRepository<T> where T : class
         {
 
             private readonly ISession session;
@@ -17,13 +17,22 @@ namespace MaiaIO.TDD.Infra.BaseEntities.Repositories
             }
             public void Add(T entity)
             {
-                session.Save(entity);
+                 try
+                    {
+                        var trs = session.BeginTransaction();
+                        session.Save(entity);
+                        trs.Commit();
+                    }
+                 catch (Exception ex) 
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
             }
 
             public T AddWithReturn(T entity)
             {
                 session.Save(entity);
-                return session.Query<T>().Where(x => x.UID == entity.UID).FirstOrDefault();
+                return entity;
                 
             }
 

@@ -1,7 +1,5 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using MaiaIO.TDD.Domain.Machines.Entities;
-using MaiaIO.TDD.Infra.Devices.Mappings;
 using MaiaIO.TDD.Infra.Factories.Mappings;
 using NHibernate;
 
@@ -16,29 +14,18 @@ namespace MaiaIO.TDD.Infra
         private static string connectionString = @"server=127.0.0.1;Port=3306;database=FTW;Uid=root;pwd=my-secret-pw;";
         //private string connectionString = @"Server=localhost;Database=Base_FTW;Trusted_Connection=True";
 
-        public DbContext(ISessionFactory sessionFactory) 
-        { 
+        public DbContext(ISessionFactory sessionFactory)
+        {
             _sessionFactory = sessionFactory;
         }
 
         public static ISessionFactory Initialize()
         {
 
-
-            //connectionString = new MySQLConnectionStringBuilder();
-
             if (_sessionFactory == null)
             {
                 try
                 {
-
-
-                    //NHibernate.Cfg.Configuration config = new NHibernate.Cfg.Configuration();
-
-                    //var session = config.SessionFactory();
-
-                    
-
                     _sessionFactory = Fluently.Configure()
                                             .Database(MySQLConfiguration.Standard
                                             .ConnectionString(connectionString))
@@ -47,8 +34,9 @@ namespace MaiaIO.TDD.Infra
                                                 //m.HbmMappings.AddFromAssemblyOf<FactoryMapping>();
                                                 m.FluentMappings.AddFromAssemblyOf<FactoryMapping>();
                                             })
-                                            .ExposeConfiguration(c => {
-                                                c.SetProperty("show_sql", "true");  
+                                            .ExposeConfiguration(c =>
+                                            {
+                                                c.SetProperty("show_sql", "true");
                                             })
                                             .BuildSessionFactory();
 
@@ -57,12 +45,8 @@ namespace MaiaIO.TDD.Infra
                 {
                     Console.WriteLine(ex.StackTrace);
                 }
-
-
             }
-
             return _sessionFactory;
-
         }
 
         public static ISession OpenSession()

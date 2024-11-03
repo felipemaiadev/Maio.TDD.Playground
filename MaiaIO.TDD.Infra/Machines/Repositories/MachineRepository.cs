@@ -6,15 +6,12 @@ using NHibernate.Linq;
 
 namespace MaiaIO.TDD.Infra.Machines.Repositories
 {
-    public class MachineRepository : NHibernateRepository<BaseMachine>, IMachineRepository
+    public class MachineRepository(ISession session) : NHibernateRepository<BaseMachine>(session), IMachineRepository
     {
-        public MachineRepository(ISession session) : base(session) { }
 
         public async Task<MachineDeviceDTO> GetMachineDevicesById(long id)
         {
-            DbContext.Initialize();
-            var session = DbContext.OpenSession();
-
+            
             var result = await session.Query<MachineDevice>()
                                         .Select(m => new MachineDeviceDTO
                                         {
@@ -33,9 +30,6 @@ namespace MaiaIO.TDD.Infra.Machines.Repositories
 
         public async Task<bool> InsertAsync(MachineDevice entidade)
         {
-
-            DbContext.Initialize();
-            var session = DbContext.OpenSession();
 
             await session.SaveAsync(entidade);
             

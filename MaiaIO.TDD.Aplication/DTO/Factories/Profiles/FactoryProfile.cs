@@ -2,6 +2,7 @@
 using MaiaIO.TDD.API.DTO.Factories.Requests;
 using MaiaIO.TDD.API.DTO.Factories.Response;
 using MaiaIO.TDD.Aplication.DTO.Factories.Requests;
+using MaiaIO.TDD.Aplication.DTO.Factories.Response;
 using MaiaIO.TDD.Domain.Factories.Commands;
 using MaiaIO.TDD.Domain.Factories.Entities;
 
@@ -20,6 +21,8 @@ namespace MaiaIO.TDD.API.DTO.Factories.Profiles
             CreateMap<FactoryResponse, Factory>().ReverseMap();
 
             CreateMap<FactoryInsertRequest, FactoryInsertCommand>();
+            
+            CreateMap<FactoryEditRequest, FactoryEditCommand>();
         }
     }
 }

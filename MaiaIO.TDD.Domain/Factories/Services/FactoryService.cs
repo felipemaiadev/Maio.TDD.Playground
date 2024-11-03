@@ -7,31 +7,39 @@ using Microsoft.VisualBasic;
 
 namespace MaiaIO.TDD.Domain.Factories.Services
 {
-    public class FactoryService : IFactoryService
+    public class FactoryService(IFactoryRepository factoryRepository) : IFactoryService
     {
-        public readonly IFactoryRepository _factoryRepository;
 
-
-        public FactoryService(IFactoryRepository factoryRepository)
-        {
-            _factoryRepository = factoryRepository;
-        }
 
         public async Task<Factory> InsertAsync(FactoryInsertCommand factory)
         {
             var validFactory = await Instantiate(factory);
-           return await _factoryRepository.InsertAsync(validFactory);
+           return await factoryRepository.InsertAsync(validFactory);
+        }
+
+        public async Task<Factory> EditAsync(FactoryEditCommand factoryEditCommand)
+        {
+            Factory factory = await  Instantiate(factoryEditCommand);
+            await factoryRepository.UpdateAsync(factory);
+            return factory;
         }
 
         public async Task<IEnumerable<Factory>> GetListAsync()
         {
 
-            return await _factoryRepository.GetListAsync();
+            return await factoryRepository.GetListAsync();
         }
 
         public async Task<Factory> GetByIdAsync(long id)
         {
-            return await _factoryRepository.GetByIdAsync(id);
+            return await factoryRepository.GetByIdAsync(id);
+        }
+
+        public async Task<Factory> DeleteAsync(long id)
+        {
+            Factory factory = await GetByIdAsync(id);
+            factoryRepository.Delete(factory);
+            return factory;
         }
 
         public async Task<Factory> Instantiate(FactoryInsertCommand factoryInsertCommand)
@@ -39,6 +47,13 @@ namespace MaiaIO.TDD.Domain.Factories.Services
             Factory validFactory =  await Validate(factoryInsertCommand);
                 
             return validFactory;
+        }
+
+        public async Task<Factory> Instantiate(FactoryEditCommand factoryEditCommand)
+        { 
+            Factory factory = await Validate(factoryEditCommand);
+
+            return factory;
         }
 
         public async Task<Factory> Validate(FactoryInsertCommand factoryInsertCommand)
@@ -54,7 +69,24 @@ namespace MaiaIO.TDD.Domain.Factories.Services
             return factory;
         }
 
+       
 
+        public async Task<Factory> Validate(FactoryEditCommand factoryEditCommand)
+        {
+            Factory factory = await factoryRepository.GetByIdAsync(factoryEditCommand.Id);
 
+            if (factory == null) throw new ArgumentException("Fabrica a ser editada não localizada");
+
+            if (factory.UID != factoryEditCommand.UID) throw new ArgumentException("O UID repassado não é o mesmo da entidade presistida");
+
+            factory.SetDescription(factoryEditCommand.Description);
+            factory.SetCountry(factoryEditCommand.Country);
+            factory.SetStatus(factoryEditCommand.IsActive);
+            factory.SetName(factoryEditCommand.Name);
+
+            return factory;
+        }
+
+       
     }
 }

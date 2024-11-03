@@ -8,5 +8,6 @@ namespace MaiaIO.TDD.Domain.Factories.Repositories.Interfaces
         public Task<IEnumerable<Factory>> GetListAsync();
         public Task<Factory> GetByIdAsync(long id);
         public Task<Factory> InsertAsync(Factory factory);
+        public Task<Factory> UpdateAsync(Factory factory);
     }
 }

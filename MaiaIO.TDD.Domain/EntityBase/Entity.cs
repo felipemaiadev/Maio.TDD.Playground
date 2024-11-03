@@ -2,13 +2,12 @@
 {
     public abstract class Entity
     {
-
-        public virtual Guid UID { get; set; }
-
+        public virtual Guid UID { get; protected set; }
         protected Entity()
         {
-            UID = Guid.NewGuid();
+            SetUID();
         }
 
+        protected void SetUID() => UID = Guid.NewGuid();
     }
 }

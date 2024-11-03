@@ -1,4 +1,5 @@
-﻿using MaiaIO.TDD.Domain.EntityBase;
+﻿using Antlr.Runtime.Tree;
+using MaiaIO.TDD.Domain.EntityBase;
 using MaiaIO.TDD.Domain.EntityBase.Repositories.Interfaces;
 using NHibernate;
 using System.Collections;
@@ -38,7 +39,16 @@ namespace MaiaIO.TDD.Infra.BaseEntities.Repositories
 
             public void Delete(T entity)
             {
-                throw new NotImplementedException();
+                 var trn = session.BeginTransaction();
+                    try
+                        {
+                          session.Delete(entity);
+                           trn.Commit();
+                        }
+                    catch (Exception ex)
+                        {
+                            trn.Rollback();
+                        }
             }
 
             public T DeleteWithReturn(T entity)

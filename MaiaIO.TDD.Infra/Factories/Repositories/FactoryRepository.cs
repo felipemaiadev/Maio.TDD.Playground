@@ -7,12 +7,8 @@ using NHibernate.Linq;
 
 namespace MaiaIO.TDD.Infra.Factories.Repositories
 {
-    public class FactoryRepository : NHibernateRepository<Factory>, IFactoryRepository
+    public class FactoryRepository(ISession session) : NHibernateRepository<Factory>(session), IFactoryRepository
     {
-        public FactoryRepository(ISession session) : base(session)
-        {
-        }
-
         public async Task<IEnumerable<Factory>> GetListAsync()
         {
             
@@ -30,16 +26,26 @@ namespace MaiaIO.TDD.Infra.Factories.Repositories
 
         public async Task<Factory> GetByIdAsync(long id)
         {
-            DbContext.Initialize();
-            var session = DbContext.OpenSession();
-
-            //session.BeginTransaction();
-
             var result = await session.Query<Factory>().FirstOrDefaultAsync(x => x.Id == id);
 
             return result;
         }
 
+        public async Task<Factory> UpdateAsync(Factory factory)
+        {
+            try
+            {
+                var trns =  session.BeginTransaction();
+                await session.SaveOrUpdateAsync(factory);
+                trns.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
 
+            return factory;
+        }
     }
 }

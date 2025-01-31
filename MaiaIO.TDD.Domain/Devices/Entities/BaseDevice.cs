@@ -29,11 +29,8 @@ namespace MaiaIO.TDD.Domain.Devices.Entities
         }
         public BaseDevice()
         {
-
             this.SetMachines(new List<BaseMachine>());
         }
-
-
 
         public virtual void SetMachines(IList<BaseMachine> machines)
         {

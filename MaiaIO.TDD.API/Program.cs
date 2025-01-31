@@ -1,4 +1,5 @@
 using MaiaIO.TDD.API.DTO.Factories.Profiles;
+using MaiaIO.TDD.API.Extentions;
 using MaiaIO.TDD.IoC;
 using System.Text.Json.Serialization;
 
@@ -22,14 +23,9 @@ builder.Services.AddNHibernate(section.Value);
 
 builder.Services.AddAutoMapper(typeof(FactoryProfile).Assembly);
 
-//builder.Services.AddSingleton<IMapper>();
-
-//builder.Services.AddScoped<IFactoryAppService, FactoryAppService>();
-//builder.Services.AddScoped<IFactoryService, FactoryService>();
-//builder.Services.AddScoped<IFactoryRepository, FactoryRepository>();
-
 builder.Services.DIConfig();
 
+builder.Services.CorsSettingsConfiguration();
 
 builder.Services.AddMvc().AddJsonOptions(opt =>
 {
@@ -49,6 +45,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

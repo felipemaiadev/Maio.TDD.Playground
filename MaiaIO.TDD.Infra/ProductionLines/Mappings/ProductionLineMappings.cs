@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
 using MaiaIO.TDD.Domain.ProductionLines.Entities;
+using NHibernate.Engine;
 
 namespace MaiaIO.TDD.Infra.ProductionLines.Mappings
 {
@@ -18,12 +19,23 @@ namespace MaiaIO.TDD.Infra.ProductionLines.Mappings
             Map(x => x.IsActive).Column("IsActive");
             Map(x => x.AssemblyStamp).Column("AssemblyStamp");
             Map(x => x.LastUpdate).Column("LastUpdate");
+            
             References(r => r.Factory);
+
+
             HasMany(r => r.Machines)
                 .Schema("FTW")
                 .Table("Machine")
                 .KeyColumn("ProductionLine_Id")
-                .LazyLoad();
+                .Cascade
+                .All();
+
+            HasMany(r => r.WorkOrders)
+              .Schema("FTW")
+              .Table("WorkOrder")
+              .KeyColumn("ProductionLine_Id")
+              .Fetch
+              .Select();
 
         }
     }

@@ -1,7 +1,7 @@
 ﻿using MaiaIO.TDD.Domain.Factories.Entities;
+using MaiaIO.TDD.Domain.Factories.Repositories.Consultas;
 using MaiaIO.TDD.Domain.Factories.Repositories.Interfaces;
 using MaiaIO.TDD.Infra.BaseEntities.Repositories;
-using Microsoft.VisualBasic;
 using NHibernate;
 using NHibernate.Linq;
 
@@ -9,12 +9,22 @@ namespace MaiaIO.TDD.Infra.Factories.Repositories
 {
     public class FactoryRepository(ISession session) : NHibernateRepository<Factory>(session), IFactoryRepository
     {
-        public async Task<IEnumerable<Factory>> GetListAsync()
+        public async Task<IList<FactoryListarConsulta>> GetListAsync()
         {
-            
-            IQueryable<Factory> result =  base.GetAll();
 
-            return await result.ToListAsync();
+            var resultado = session.Query<Factory>()
+                                          .SelectMany(x => x.Lines,
+                                                      (factory, lines) =>
+                                                      new FactoryListarConsulta
+                                                      {
+                                                          FactoryId = factory.Id,
+                                                          FatoryName = factory.Name,
+                                                          FactoryDescription = factory.Description,
+                                                          LineAssemblyTimeStamp = lines.AssemblyStamp,
+                                                          LineDescription = lines.Descriptrion
+                                                      })
+                                          .ToList();
+            return resultado;
 
         }
 
@@ -35,7 +45,7 @@ namespace MaiaIO.TDD.Infra.Factories.Repositories
         {
             try
             {
-                var trns =  session.BeginTransaction();
+                var trns = session.BeginTransaction();
                 await session.SaveOrUpdateAsync(factory);
                 trns.Commit();
             }

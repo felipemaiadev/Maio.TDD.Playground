@@ -29,11 +29,11 @@ namespace MaiaIO.TDD.API.Services.Factories
             return resultmap;
         }
 
-        public async Task<IEnumerable<FactoryListResponse>> ListarAsync()
+        public async Task<IList<FactoryListarReponse>> ListarAsync()
         {
 
             var result = await factoryService.GetListAsync();
-            var mappedResult = mapper.Map<IEnumerable<FactoryListResponse>>(result);
+            var mappedResult = mapper.Map<IList<FactoryListarReponse>>(result);
          
             return mappedResult;
         }

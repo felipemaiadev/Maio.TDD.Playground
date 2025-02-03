@@ -1,5 +1,6 @@
 ﻿using MaiaIO.TDD.Domain.Factories.Commands;
 using MaiaIO.TDD.Domain.Factories.Entities;
+using MaiaIO.TDD.Domain.Factories.Repositories.Consultas;
 
 namespace MaiaIO.TDD.Domain.Factories.Services.Interface
 {
@@ -8,7 +9,7 @@ namespace MaiaIO.TDD.Domain.Factories.Services.Interface
 
         //public Task<Factory> GetAllFactories(FactoryGetListCommand command);
 
-        public Task<IEnumerable<Factory>> GetListAsync();
+        public Task<IList<FactoryListarConsulta>> GetListAsync();
         public Task<Factory> GetByIdAsync(long id);
         public Task<Factory> InsertAsync(FactoryInsertCommand factory);
         public Task<Factory> EditAsync(FactoryEditCommand factoryEditCommand);

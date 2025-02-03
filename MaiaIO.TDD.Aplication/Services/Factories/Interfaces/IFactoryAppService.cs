@@ -7,7 +7,7 @@ namespace MaiaIO.TDD.API.Services.Factories.Interfaces
     public interface IFactoryAppService
     {
 
-        public Task<IEnumerable<FactoryListResponse>> ListarAsync();
+        public Task<IList<FactoryListarReponse>> ListarAsync();
         public Task<FactoryResponse> GetByIdAsync(long id);
         public Task<FactoryResponse> InsertAsync(FactoryInsertRequest factory);
         public Task<FactoryResponse> EditAsync(FactoryEditRequest factory);

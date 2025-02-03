@@ -43,7 +43,7 @@ namespace MaiaIO.TDD.Infra
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.StackTrace);
+                        Console.WriteLine(ex.StackTrace);
                 }
             }
             return _sessionFactory;

@@ -16,7 +16,7 @@ namespace MaiaIO.TDD.Infra.Machines.Mappings
             Map(x => x.Name).Column("Name");
             Map(x => x.InventoryCode).Column("InventoryCode");
             Map(x => x.IdProductionLine).Column("ProductionLine_Id").Not.Update();
-            References(r => r.ProductionLine).Not.LazyLoad();
+            References(r => r.ProductionLine);
 
             HasManyToMany(r => r.DeviceList)
                 .Schema("FTW")

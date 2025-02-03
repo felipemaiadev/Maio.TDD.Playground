@@ -1,9 +1,9 @@
 ﻿using MaiaIO.TDD.Domain.Factories.Commands;
 using MaiaIO.TDD.Domain.Factories.Entities;
+using MaiaIO.TDD.Domain.Factories.Repositories.Consultas;
 using MaiaIO.TDD.Domain.Factories.Repositories.Interfaces;
 using MaiaIO.TDD.Domain.Factories.Services.Interface;
 using MaiaIO.TDD.Domain.ProductionLines.Entities;
-using Microsoft.VisualBasic;
 
 namespace MaiaIO.TDD.Domain.Factories.Services
 {
@@ -14,17 +14,17 @@ namespace MaiaIO.TDD.Domain.Factories.Services
         public async Task<Factory> InsertAsync(FactoryInsertCommand factory)
         {
             var validFactory = await Instantiate(factory);
-           return await factoryRepository.InsertAsync(validFactory);
+            return await factoryRepository.InsertAsync(validFactory);
         }
 
         public async Task<Factory> EditAsync(FactoryEditCommand factoryEditCommand)
         {
-            Factory factory = await  Instantiate(factoryEditCommand);
+            Factory factory = await Instantiate(factoryEditCommand);
             await factoryRepository.UpdateAsync(factory);
             return factory;
         }
 
-        public async Task<IEnumerable<Factory>> GetListAsync()
+        public async Task<IList<FactoryListarConsulta>> GetListAsync()
         {
 
             return await factoryRepository.GetListAsync();
@@ -44,13 +44,13 @@ namespace MaiaIO.TDD.Domain.Factories.Services
 
         public async Task<Factory> Instantiate(FactoryInsertCommand factoryInsertCommand)
         {
-            Factory validFactory =  await Validate(factoryInsertCommand);
-                
+            Factory validFactory = await Validate(factoryInsertCommand);
+
             return validFactory;
         }
 
         public async Task<Factory> Instantiate(FactoryEditCommand factoryEditCommand)
-        { 
+        {
             Factory factory = await Validate(factoryEditCommand);
 
             return factory;
@@ -69,7 +69,7 @@ namespace MaiaIO.TDD.Domain.Factories.Services
             return factory;
         }
 
-       
+
 
         public async Task<Factory> Validate(FactoryEditCommand factoryEditCommand)
         {
@@ -87,6 +87,6 @@ namespace MaiaIO.TDD.Domain.Factories.Services
             return factory;
         }
 
-       
+
     }
 }

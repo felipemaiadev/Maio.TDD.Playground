@@ -1,6 +1,7 @@
 ﻿using MaiaIO.TDD.Domain.EntityBase;
 using MaiaIO.TDD.Domain.Factories.Entities;
 using MaiaIO.TDD.Domain.Machines.Entities;
+using MaiaIO.TDD.Domain.WorkOrders.Entities;
 using System.Reflection.PortableExecutable;
 
 namespace MaiaIO.TDD.Domain.ProductionLines.Entities
@@ -13,6 +14,7 @@ namespace MaiaIO.TDD.Domain.ProductionLines.Entities
         public virtual long IdFactory { get; protected set; }
         public virtual Factory Factory { get; protected set; }
         public virtual IList<BaseMachine> Machines { get; protected set; }
+        public virtual IList<WorkOrder> WorkOrders { get; protected set; }
         public virtual bool IsActive { get; protected set; }
         public virtual DateTime AssemblyStamp { get; protected set; }
         public virtual DateTime LastUpdate { get; protected set; }

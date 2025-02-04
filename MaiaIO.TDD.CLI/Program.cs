@@ -5,23 +5,23 @@ using MaiaIO.TDD.Aplication.DTO.ProductionLines.Response;
 using MaiaIO.TDD.CLI;
 using MaiaIO.TDD.Domain.Devices.Entities;
 using MaiaIO.TDD.Domain.Devices.Enums;
-using MaiaIO.TDD.Domain.Factories.Entities;
-using MaiaIO.TDD.Domain.Machines.Commands;
 using MaiaIO.TDD.Domain.Machines.Entities;
-using MaiaIO.TDD.Domain.ProductionLines.Commands;
 using MaiaIO.TDD.Domain.ProductionLines.Entities;
 using MaiaIO.TDD.Domain.WorkOrders.Entities;
 using MaiaIO.TDD.Infra;
-using NHibernate;
 using NHibernate.Criterion;
-using NHibernate.Linq;
-using NHibernate.SqlCommand;
 using NHibernate.Transform;
-using System.Reflection.PortableExecutable;
+using static MaiaIO.TDD.Domain.ProductionLines.Entities.ProductionLineWorkerOrder;
 
-var busca = new FabricaListarRequest { Id = 0, Name = "", IsActive = true, 
-                                       Country = "BRAZIL", VendorType = TypeDeviceEnum.PLC ,
-                                       LineStatus = true };
+var busca = new FabricaListarRequest
+{
+    Id = 0,
+    Name = "",
+    IsActive = true,
+    Country = "BRAZIL",
+    VendorType = TypeDeviceEnum.PLC,
+    LineStatus = true
+};
 var service = new FabricaAppService();
 
 //FactoryAppService.GetCriterios(busca);
@@ -99,11 +99,25 @@ if (session != null)
                                .Asc
                                .List<ProductionLineReportResponse>();
 
-                               
-                               
-                                
-                               
-                               
+
+    var plWorkOrder = ProductionLineWorkerOrderFactory.Create();
+
+    var lineReportComplete = session.QueryOver(() => plWorkOrder)
+                                    .JoinAlias(x => x.ProductionLines, () => line)
+                                    .JoinAlias(x => x.WorkOrders, () => orders)
+                                    .Select(
+                                         Projections.Property(() => plWorkOrder.Id).WithAlias("IDPLWKORDER"),
+                                         Projections.Property(() => plWorkOrder.IdProductionLine).WithAlias("IDPRODUCTIONLINE"),
+                                         Projections.Property(() => line.Name).WithAlias("PLNAME"),
+                                         Projections.Property(() => plWorkOrder.IdWorkerOrder).WithAlias("IDWKORDER"),
+                                         Projections.Property(() => orders.OrderCode).WithAlias("WKORDERCODE"),
+                                         Projections.Property(() => plWorkOrder.Status).WithAlias("STATUSPLWKORDER"),
+                                         Projections.Property(() => plWorkOrder.CreateTimeStamp).WithAlias("CREATEPLWKORDER"))
+                                    .List<object[]>();
+
+
+
+
     //foreach (var row in result)
     //    Console.WriteLine($"{row.Name} - {row.Description} - {row.AssemblyStamp} - {row.Lines.FirstOrDefault().Machines.FirstOrDefault()}");
 
